@@ -1,0 +1,60 @@
+body {
+    font-family: 'Barriecito', cursive;
+    font-size: 24px;
+    background-image: url(https://media.giphy.com/media/WBTUlyKBVlTTa/giphy.gif);
+    background-repeat: round;
+    background-color: #333333;
+    color: #E79736;
+}
+input[type=text], button {
+    border: 4px solid #990000;
+    border-radius: 10px;
+    height: 40px;
+    background-color: #669F2D;
+    color: #EBC46D;
+}
+#devoured {
+    float: right;
+    text-align: right;
+}
+.main-page {
+    background-color: rgba(0,0,0,.5);
+    border-radius: 5px;
+}
+h1 {
+   color: #FFFF00; 
+}
+h2, #repo {
+    color: #663300;
+}
+#burger-gif {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+}
+footer {
+    text-align: center;
+    padding-bottom: 10px;
+    color: #663300;
+}
+@media screen and (max-width: 575px) {
+    #menu, #devoured, #add-a-burger {
+        text-align: center;
+    }
+    #burger-gif {
+        display: none;
+    }
+    body {
+        background-image: url(https://media.giphy.com/media/WBTUlyKBVlTTa/giphy.gif);
+        background-repeat: round;
+    }
+    #eaten {
+        font-size: 24px;
+    }
+}
+@media screen and (max-width: 750px) {
+    #eaten {
+        font-size: 16px;
+    }
+}
