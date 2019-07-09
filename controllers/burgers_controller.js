@@ -3,37 +3,38 @@ var express = require("express");
 var router = express.Router();
 
 // Import the model to use its database functions.
-var burger = require("../models/burger.js");
+var db = require("../models");
 
 // Get all data from db
 router.get("/", function (req, res) {
-  burger.all(function (data) {
+  db.burger.findAll({
+    include: [db.Burger]
+  }).then(function (burger) {
     var hbsObject = {
-      burgers: data
+      burgers: burger
     };
-
-    console.log(hbsObject);
     // render to index handlebars
     res.render("index", hbsObject);
   });
 });
 
+// Post to db and refresh page
 router.post("/api/burgers", function (req, res) {
-  burger.create(req.body.burger_name, function (result) {
-    // redirect to main page
+  db.burger.create({
+    burger_name: req.body.burger_name
+  }).then(function () {
     res.redirect("/");
-  });
+  })
 });
 
+// Update by id and refresh page
 router.put("/api/burgers/:id", function (req, res) {
-  burger.update(req.params.id, function (result) {
-    if (result.changedRows == 0) {
-      // If no rows were changed, then the ID must not exist, so 404
-      return res.status(404).end();
-    } else {
-      res.status(200).end();
-    }
-  });
+  db.burger.update(
+    { devoured: true },
+    { where: { id: req.body.id } }
+  ).then(function () {
+    res.redirect("/");
+  })
 });
 
 // Export routes for server.js to use.
